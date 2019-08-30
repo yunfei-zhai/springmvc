@@ -15,15 +15,12 @@ public class MyController {
 	StudentService studentService;
 	@RequestMapping("select")
 	public String select(ModelMap m, String txt) {
-		System.out.println(txt);
-		System.out.println("hello");
 		if(txt==null) {
 			  txt=" ";
 		  }else {
 			  txt=" where student.name like '%"+txt+"%'";
 		  }
 		m.put("list", studentService.select(txt));
-		System.out.println("MyController.select()-->"+txt);
 		return "index";
 	}
 }
