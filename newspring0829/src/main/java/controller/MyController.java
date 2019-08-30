@@ -16,6 +16,7 @@ public class MyController {
 	@RequestMapping("select")
 	public String select(ModelMap m, String txt) {
 		System.out.println(txt);
+		System.out.println("hello");
 		if(txt==null) {
 			  txt=" ";
 		  }else {
