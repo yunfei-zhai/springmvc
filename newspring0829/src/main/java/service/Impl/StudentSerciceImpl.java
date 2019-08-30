@@ -15,5 +15,18 @@ StudentDao studentDao;
 	public List<Student> select(String txt) {
 		return studentDao.select(txt);
 	}
+	public void delete(int id) {
+		studentDao.delete(id);
+	}
+	public void insert(Student s) {
+		studentDao.insert(s);
+	}
+	public void update(Student s) {
+		studentDao.update(s);
+		
+	}
+	public List<Student> selectById(int id) {
+		return studentDao.selectById(id);
+	}
 
 }

@@ -1,6 +1,6 @@
 package model;
 
-public class Class {
+public class MyClass {
 private int classid;
 private String classname;
 public int getClassid() {
@@ -15,5 +15,6 @@ public String getClassname() {
 public void setClassname(String classname) {
 	this.classname = classname;
 }
+
 
 }
