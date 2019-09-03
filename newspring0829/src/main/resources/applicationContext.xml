@@ -15,6 +15,9 @@
  <!-- 注解驱动 -->
     <mvc:annotation-driven/>
     <!-- 处理静态资源 -->
+    <mvc:resources location="/layui/" mapping="/layui/**"></mvc:resources>
+    <mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
+    <mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
     <mvc:default-servlet-handler/>
     <!-- 处理器映射器 -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>

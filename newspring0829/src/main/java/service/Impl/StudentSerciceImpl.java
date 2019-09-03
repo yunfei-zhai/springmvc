@@ -12,8 +12,8 @@ import service.StudentService;
 public class StudentSerciceImpl implements StudentService{
 @Autowired 
 StudentDao studentDao;
-	public List<Student> select(String txt) {
-		return studentDao.select(txt);
+	public List<Student> select(String txt,String limit) {
+		return studentDao.select(txt, limit);
 	}
 	public void delete(int id) {
 		studentDao.delete(id);
@@ -27,6 +27,9 @@ StudentDao studentDao;
 	}
 	public List<Student> selectById(int id) {
 		return studentDao.selectById(id);
+	}
+	public int selectCount(String txt) {
+		return studentDao.selectCount(txt);
 	}
 
 }

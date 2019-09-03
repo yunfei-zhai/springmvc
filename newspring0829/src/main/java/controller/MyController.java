@@ -3,57 +3,65 @@ package controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.StudentDao;
 import model.Student;
 import service.ClassService;
 import service.StudentService;
 import service.Impl.StudentSerciceImpl;
+import utils.ReturnInfo;
 
 @Controller
+@RequestMapping("student")
 public class MyController {
 	@Autowired 
 	StudentService studentService;
 	@Autowired
 	ClassService classService;
-	@RequestMapping("select")
-	public String select(ModelMap m, String txt) {
+	
+	@RequestMapping("index")
+	public @ResponseBody ReturnInfo select(String txt,Integer page,Integer limit) {
 		if(txt==null) {
 			  txt=" ";
 		  }else {
 			  txt=" where student.name like '%"+txt+"%'";
 		  }
-		m.put("list", studentService.select(txt));
-		return "index";
+		  ReturnInfo info=new ReturnInfo();
+		  info.setCount(studentService.selectCount(txt));
+		  info.setList(studentService.select(txt,info.getLimit(page, limit)));
+		  return info;
 	}
 	@RequestMapping("delete")
-	public String delete(ModelMap m,int id) {
+	public @ResponseBody String delete(int id) {
 		studentService.delete(id);
-		return select(m, null);
+		return "{\"status\":1}";
 	} 
 	@RequestMapping("insert")
-	public String insert(ModelMap m,Student s) {
+	public @ResponseBody String insert(Student s) {
 		studentService.insert(s);
-		return select(m, null);
+		return "{\"status\":1}";
 	} 
 	@RequestMapping("update")
-	public String update(ModelMap m,Student s) {
+	public @ResponseBody String update(Student s) {
 		studentService.update(s);
-		return select(m, null);
+		return "{\"status\":1}";
 	} 
 	@RequestMapping("edit")
-	public String edit(ModelMap m,int id) {
-		m.put("info", studentService.selectById(id).get(0));
-		m.put("sexs", Student.sexs);
-		m.put("myclass", classService.select());
-		return "edit";
+	public @ResponseBody Student edit(int id) {
+		Student stu= studentService.selectById(id).get(0);
+		return stu;
 	} 
-	@RequestMapping("add")
+	/*@RequestMapping("add")
 	public String add(ModelMap m) {
 		m.put("sexs", Student.sexs);
 		m.put("myclass", classService.select());
 		return "edit";
+	} */
+	@RequestMapping("sexs")
+	public @ResponseBody String[] sexs() {
+		return Student.sexs;
 	} 
-	
 }
