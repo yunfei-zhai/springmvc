@@ -11,15 +11,15 @@
 <script type="text/javascript">
 function del(id){
 	if(confirm("是否删除？")){
-		open("delete?id="+id,"_self")
+		open("student/delete?id="+id,"_self")
 	}
 }
 </script>
-<form action="select" method="post">
+<form action="student/select" method="post">
 <input name="txt">
 <input type="submit" value="查询">
 </form>
-<form action="add">
+<form action="student/add">
 <input type="submit" value="新增">
 </form>
 <table>

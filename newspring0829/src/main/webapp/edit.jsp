@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:if test="${info==null}">
-<form action="insert" method="post">
+<form action="student/insert" method="post">
 <input name="name">
 <select name="sex">
 <c:forEach items="${sexs}" var="r" varStatus="v">

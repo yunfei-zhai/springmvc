@@ -12,6 +12,7 @@ import service.StudentService;
 import service.Impl.StudentSerciceImpl;
 
 @Controller
+@RequestMapping("student")
 public class MyController {
 	@Autowired 
 	StudentService studentService;

@@ -11,7 +11,14 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+	
+ <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="interceptor.Loginintercepter" />
+		</mvc:interceptor>
+	</mvc:interceptors> 
+	
  <!-- 注解驱动 -->
     <mvc:annotation-driven/>
     <!-- 处理静态资源 -->
@@ -32,11 +39,13 @@
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-<!-- 扫描实现类的包 -->
+
+
     <context:component-scan base-package="controller"></context:component-scan>
 	<context:component-scan base-package="service.Impl"></context:component-scan>
 	<context:component-scan base-package="dao"></context:component-scan>
     <!-- 加载其他的配置 -->
    <import resource="classpath:applicationContext-dao.xml"/>
+   <import resource="classpath:shiro.xml"/>
 
 </beans>
